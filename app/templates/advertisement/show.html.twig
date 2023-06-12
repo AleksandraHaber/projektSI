@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.advertisement_details'|trans({'%id%': advertisement.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.advertisement_details'|trans({'%id%': advertisement.id|default('')}) }}</h1>
+    {% if advertisement is defined and advertisement|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ advertisement.id }}</dd>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ advertisement.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ advertisement.updatedAt|format_date('long') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  advertisement.title }}</dd>
+            <dt>{{ 'label.text'|trans }}</dt>
+            <dd>{{  advertisement.text }}</dd>
+            <dt>{{ 'label.isActive'|trans }}</dt>
+            <dd>{{  advertisement.isActive }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  advertisement.category.title }}</dd>
+            <dt>{{ 'label.email'|trans }}</dt>
+            <dd>{{  advertisement.email }}</dd>
+            <dt>{{ 'label.phoneNumber'|trans }}</dt>
+            <dd>{{  advertisement.phoneNumber }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('advertisement_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
