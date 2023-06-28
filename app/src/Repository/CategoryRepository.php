@@ -1,4 +1,7 @@
 <?php
+/**
+ * Category repository.
+ */
 
 namespace App\Repository;
 
@@ -19,6 +22,9 @@ class CategoryRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor.
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
@@ -35,6 +41,9 @@ class CategoryRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * @param Category $entity category entity
+     */
     public function remove(Category $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -47,24 +56,17 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array $filters filters array
+     *
      * @return QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
+            ->select('partial category.{id, createdAt, updatedAt, title}')
             ->orderBy('category.createdAt', 'DESC');
-    }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('category');
+        return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
     /**
@@ -77,7 +79,6 @@ class CategoryRepository extends ServiceEntityRepository
         $this->_em->remove($category);
         $this->_em->flush();
     }
-
 
     /**
      * @return Category[] Returns an array of Category objects
@@ -94,13 +95,47 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
 
-//    public function findOneBySomeField($value): ?Category
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * Query advertisements by author.
+     *
+     * @param array<string, object> $filters Filters
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(array $filters = []): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll($filters);
+
+        return $queryBuilder;
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        return $queryBuilder;
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('category');
+    }
 }

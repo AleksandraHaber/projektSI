@@ -6,7 +6,6 @@
 namespace App\Service;
 
 use App\Entity\Advertisement;
-use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -45,5 +44,4 @@ interface AdvertisementServiceInterface
      * @return array|null array
      */
     public function findAllByCategory(int $category): array;
-
 }

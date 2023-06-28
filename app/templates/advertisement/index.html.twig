@@ -5,19 +5,12 @@
 {% endblock %}
 
 {% block body %}
+
     <h1>{{ 'title.advertisement_list'|trans }}</h1>
 
     <div><a href="{{ url('category_index') }}" title="{{ 'action.category'|trans }}">
             {{ 'Kategorie'|trans }}
         </a>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ url('user_edit', {id: 1}) }}" title="{{ 'action.user_edit'|trans }}">
-            {{ 'Zmień hasło'|trans }}
-        </a>
-        <a href="{{ url('user_data', {id: 1}) }}" title="{{ 'action.data_edit'|trans }}">
-            {{ 'Zmień dane'|trans }}
-        </a>
-    {% endif %}
     </div>
 
     {% if pagination is defined and pagination.items|length %}
@@ -44,23 +37,16 @@
             </thead>
             <tbody>
             {% for advertisement in pagination.items %}
-                {% if advertisement.isActive == null %}
+                {% if advertisement.isActive == 1 %}
                 <tr>
                     <td>{{ advertisement.id }}</td>
                     <td>{{ advertisement.createdAt|format_date('long') }}</td>
                     <td>{{ advertisement.updatedAt|format_date('long') }}</td>
                     <td>{{ advertisement.title }}</td>
                     <td>
-                        {{ dump(advertisement) }}
-                        {% if advertisement.isActive %}
-                            {{ 'label.active'|trans }}
-                        {% else %}
-                            {{ 'label.inactive'|trans }}
-                            {% endif %}
+                        {{ advertisement.isActive}}
                     </td>
-                    <th><a href="{{ url('advertisement_index', {'filters.category_id' : advertisement.category.id}) }}" title="{{ advertisement.category.title }}">
-                            {{ advertisement.category.title }}
-                        </a></th>
+                    <td>{{ advertisement.category.title }}</td>
                     <td>
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}

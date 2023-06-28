@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.inactive_advertisement_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.inactive_advertisement_list'|trans }}</h1>
+
+    <div><a href="{{ url('advertisement_index') }}" title="{{ 'action.advertisements'|trans }}">
+            {{ 'Powrót'|trans }}
+        </a>
+    </div>
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'advertisement.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'advertisement.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'advertisement.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'advertisement.title') }}</th>
+                <th>{{'label.isActive'|trans}}</th>
+                <th>{{ 'label.category'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for advertisement in pagination.items %}
+                {% if advertisement.isActive == 0 %}
+                    <tr>
+                        <td>{{ advertisement.id }}</td>
+                        <td>{{ advertisement.createdAt|format_date('long') }}</td>
+                        <td>{{ advertisement.updatedAt|format_date('long') }}</td>
+                        <td>{{ advertisement.title }}</td>
+                        <td>
+                            {{ advertisement.isActive}}
+                        </td>
+                        <th><a href="{{ url('advertisement_index', {'filters.category_id' : advertisement.category.id}) }}" title="{{ advertisement.category.title }}">
+                                {{ advertisement.category.title }}
+                            </a></th>
+                        <td>
+                            <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
+                                {{ 'action.view'|trans }}
+                            </a>
+                        </td>
+                        <td>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="{{ url('advertisement_activate', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
+                                    {{ 'action.edit'|trans }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="{{ url('advertisement_delete', {id: advertisement.id}) }}" title="{{ 'action.delete'|trans }}">
+                                    {{ 'action.delete'|trans }}
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

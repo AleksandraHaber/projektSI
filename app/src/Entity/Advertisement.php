@@ -1,10 +1,12 @@
 <?php
+/**
+ * Advertisement Entity.
+ */
 
 namespace App\Entity;
 
 use App\Repository\AdvertisementRepository;
 use DateTimeImmutable;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,17 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Advertisement.
  *
  * @psalm-suppress MissingConstructor
- *
  */
 #[ORM\Entity(repositoryClass: AdvertisementRepository::class)]
 #[ORM\Table(name: 'advertisements')]
 class Advertisement
 {
-
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,31 +30,23 @@ class Advertisement
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
-     *
      * @psalm-suppress PropertyNotSetInConstructor
      */
-     #[ORM\Column(type: 'datetime_immutable')]
-     #[Assert\Type(DateTimeImmutable::class)]
-     private ?DateTimeImmutable $createdAt;
-
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(\DateTimeImmutable::class)]
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
-     *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
-    private ?DateTimeImmutable $updatedAt;
-
+    #[Assert\Type(\DateTimeImmutable::class)]
+    private ?\DateTimeImmutable $updatedAt;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -64,11 +54,8 @@ class Advertisement
     #[Assert\Length(min: 3, max: 255)]
     private ?string $title = null;
 
-
     /**
      * Text.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -78,12 +65,9 @@ class Advertisement
 
     /**
      * isActive.
-     *
-     * @var boolean|null
      */
-    #[ORM\Column]
+    #[ORM\Column(type: 'boolean', nullable: false)]
     private ?bool $isActive;
-
 
     /**
      * Category.
@@ -96,8 +80,6 @@ class Advertisement
 
     /**
      * email.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 255, nullable: false)]
     #[Assert\NotBlank]
@@ -106,8 +88,6 @@ class Advertisement
 
     /**
      * phoneNumber.
-     *
-     * @var integer|null
      */
     #[ORM\Column(nullable: false)]
     #[Assert\NotBlank]
@@ -127,9 +107,9 @@ class Advertisement
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -137,9 +117,9 @@ class Advertisement
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable|null $createdAt Created at
      */
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -147,9 +127,9 @@ class Advertisement
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -157,9 +137,9 @@ class Advertisement
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @param \DateTimeImmutable|null $updatedAt Updated at
      */
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -207,7 +187,7 @@ class Advertisement
     /**
      * Getter for isActive.
      *
-     * @return boolean|null isActive
+     * @return bool|null isActive
      */
     public function isIsActive(): ?bool
     {
@@ -217,18 +197,26 @@ class Advertisement
     /**
      * Setter for isActive.
      *
-     * @param boolean|null $isActive IsActive
+     * @param bool|null $isActive IsActive
      */
     public function setIsActive(?bool $isActive): void
     {
         $this->isActive = $isActive;
     }
 
+    /**
+     * Getter for category.
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -254,13 +242,12 @@ class Advertisement
     public function setEmail(?string $email): void
     {
         $this->email = $email;
-;
     }
 
     /**
      * Getter for phoneNumber.
      *
-     * @return integer|null phoneNumber
+     * @return int|null phoneNumber
      */
     public function getPhoneNumber(): ?int
     {
@@ -270,11 +257,10 @@ class Advertisement
     /**
      * Setter for phoneNumber.
      *
-     * @param integer|null $phoneNumber PhoneNumber
+     * @param int|null $phoneNumber PhoneNumber
      */
     public function setPhoneNumber(?int $phoneNumber): void
     {
         $this->phoneNumber = $phoneNumber;
-
     }
 }

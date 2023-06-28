@@ -5,7 +5,6 @@
 
 namespace App\Service;
 
-use App\Entity\User;
 use App\Entity\Advertisement;
 use App\Repository\AdvertisementRepository;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
@@ -35,16 +34,15 @@ class AdvertisementService implements AdvertisementServiceInterface
     /**
      * Constructor.
      *
-     * @param AdvertisementRepository     $advertisementRepository Advertisement repository
-     * @param PaginatorInterface $paginator      Paginator
-     *
+     * @param CategoryServiceInterface $categoryService         Category service interface
+     * @param AdvertisementRepository  $advertisementRepository Advertisement repository
+     * @param PaginatorInterface       $paginator               Paginator
      */
     public function __construct(CategoryServiceInterface $categoryService, AdvertisementRepository $advertisementRepository, PaginatorInterface $paginator)
     {
         $this->advertisementRepository = $advertisementRepository;
         $this->paginator = $paginator;
         $this->categoryService = $categoryService;
-
     }
 
     /**
@@ -66,8 +64,6 @@ class AdvertisementService implements AdvertisementServiceInterface
         );
     }
 
-
-
     /**
      * Save entity.
      *
@@ -75,7 +71,7 @@ class AdvertisementService implements AdvertisementServiceInterface
      */
     public function save(Advertisement $advertisement): void
     {
-        if ($advertisement->getId() == null) {
+        if (null === $advertisement->getId()) {
             $advertisement->setCreatedAt(new \DateTimeImmutable());
             $advertisement->setIsActive(false);
         }
@@ -94,17 +90,29 @@ class AdvertisementService implements AdvertisementServiceInterface
         $this->advertisementRepository->delete($advertisement);
     }
 
-
     /**
      * Find by category.
      *
-     * @param int  $category Category id
+     * @param int $category Category id
      *
      * @return array Advertisement entity
      */
     public function findAllByCategory(int $category): array
     {
         return $this->advertisementRepository->findAllByCategory($category);
+    }
+
+    /**
+     * Activate advertisement.
+     *
+     * @param Advertisement $advertisement Advertisement entity
+     */
+    public function activate(Advertisement $advertisement): void
+    {
+        $advertisement->setIsActive(true);
+        $advertisement->setUpdatedAt(new \DateTimeImmutable());
+
+        $this->advertisementRepository->save($advertisement);
     }
 
     /**
@@ -124,9 +132,6 @@ class AdvertisementService implements AdvertisementServiceInterface
             }
         }
 
-
-
         return $resultFilters;
     }
-
 }

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Advertisement voter.
+ */
 
 namespace App\Security\Voter;
 
@@ -37,8 +40,6 @@ class AdvertisementVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -101,18 +102,17 @@ class AdvertisementVoter extends Voter
      * Checks if user can edit task.
      *
      * @param Advertisement $advertisement Task entity
-     * @param User $user User
+     * @param User          $user          User
      *
      * @return bool Result
      */
     private function canEdit(Advertisement $advertisement, User $user): bool
     {
-        return isset( $user);
+        return isset($user);
     }
 
     /**
      * Checks if user can view task.
-     *
      *
      * @param User $user User
      *
@@ -120,7 +120,7 @@ class AdvertisementVoter extends Voter
      */
     private function canView(User $user): bool
     {
-        return  isset( $user);
+        return isset($user);
     }
 
     /**
@@ -132,6 +132,6 @@ class AdvertisementVoter extends Voter
      */
     private function canDelete(User $user): bool
     {
-        return isset( $user);
+        return isset($user);
     }
 }

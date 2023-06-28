@@ -1,16 +1,17 @@
 <?php
+/**
+ * Advertisement repository.
+ */
 
 namespace App\Repository;
 
 use App\Entity\Advertisement;
 use App\Entity\Category;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @extends ServiceEntityRepository<Advertisement>
@@ -33,6 +34,9 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor.
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Advertisement::class);
@@ -41,21 +45,91 @@ class AdvertisementRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array $filters filters array
+     *
      * @return QueryBuilder Query builder
      */
     public function queryAll(array $filters): QueryBuilder
     {
-
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial advertisement.{id, createdAt, updatedAt, title}',
+                'partial advertisement.{id, createdAt, updatedAt, title, isActive}',
                 'partial category.{id, title}'
             )
             ->join('advertisement.category', 'category')
             ->orderBy('advertisement.createdAt', 'DESC');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
+    }
 
+    /**
+     * Count tasks by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of tasks in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('advertisement.id'))
+            ->where('advertisement.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Advertisement $advertisement Advertisement entity
+     */
+    public function save(Advertisement $advertisement): void
+    {
+        $this->_em->persist($advertisement);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Advertisement $advertisement Advertisement entity
+     */
+    public function delete(Advertisement $advertisement): void
+    {
+        $this->_em->remove($advertisement);
+        $this->_em->flush();
+    }
+
+    /**
+     * Query advertisements by author.
+     *
+     * @param array<string, object> $filters Filters
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(array $filters = []): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll($filters);
+
+        return $queryBuilder;
+    }
+
+    /**
+     * Finds advertisement by category.
+     */
+    public function findAllByCategory($id): array
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->andWhere('category_id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
@@ -86,95 +160,5 @@ class AdvertisementRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('advertisement');
-    }
-
-    /**
-     * Count tasks by category.
-     *
-     * @param Category $category Category
-     *
-     * @return int Number of tasks in category
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function countByCategory(Category $category): int
-    {
-        $qb = $this->getOrCreateQueryBuilder();
-
-        return $qb->select($qb->expr()->countDistinct('advertisement.id'))
-            ->where('advertisement.category = :category')
-            ->setParameter(':category', $category)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
-
-    /**
-     * Save entity.
-     *
-     * @param Advertisement $advertisement Advertisement entity
-     */
-    public function save(Advertisement $advertisement): void
-    {
-        $this->_em->persist($advertisement);
-        $this->_em->flush();
-    }
-
-    /**
-     * Delete entity.
-     *
-     * @param Advertisement $advertisement Advertisement entity
-     */
-    public function delete(Advertisement $advertisement): void
-    {
-        $this->_em->remove($advertisement);
-        $this->_em->flush();
-    }
-
-
-
-//    public function save(Advertisement $entity, bool $flush = false): void
-//    {
-//        $this->getEntityManager()->persist($entity);
-//
-//        if ($flush) {
-//            $this->getEntityManager()->flush();
-//        }
-//    }
-//
-//    public function remove(Advertisement $entity, bool $flush = false): void
-//    {
-//        $this->getEntityManager()->remove($entity);
-//
-//        if ($flush) {
-//            $this->getEntityManager()->flush();
-//        }
-//    }
-
-    /**
-     * Query advertisements by author.
-     *
-     * @param array<string, object> $filters Filters
-     *
-     * @return QueryBuilder Query builder
-     */
-    public function queryByAuthor(  array $filters = []): QueryBuilder
-    {
-        $queryBuilder = $this->queryAll($filters);
-
-        return $queryBuilder;
-    }
-
-    public function findAllByCategory($id): array
-    {
-        return $this->getOrCreateQueryBuilder()
-            ->andWhere('category_id = :val')
-            ->setParameter('val', $id)
-            ->getQuery()
-            ->getResult()
-            ;
-
-
     }
 }

@@ -7,7 +7,6 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Advertisement;
-use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -40,7 +39,8 @@ class AdvertisementType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'text',
             TextType::class,
@@ -48,7 +48,8 @@ class AdvertisementType extends AbstractType
                 'label' => 'label.text',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'email',
             TextType::class,
@@ -56,7 +57,8 @@ class AdvertisementType extends AbstractType
                 'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'phoneNumber',
             IntegerType::class,
@@ -64,7 +66,8 @@ class AdvertisementType extends AbstractType
                 'label' => 'label.phoneNumber',
                 'required' => true,
                 'attr' => ['max_length' => 9],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -78,7 +81,6 @@ class AdvertisementType extends AbstractType
                 'required' => true,
             ]
         );
-
     }
 
     /**

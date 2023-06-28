@@ -5,12 +5,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Advertisement;
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
-use App\Repository\AdvertisementRepository;
-use App\Repository\CategoryRepository;
-use App\Service\CategoryService;
 use App\Service\CategoryServiceInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -27,7 +23,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
-
     /**
      * Category service.
      */
@@ -35,14 +30,14 @@ class CategoryController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
-
     /**
      * Constructor.
+     *
+     * @param CategoryServiceInterface $categoryService category Service Interface
+     * @param TranslatorInterface      $translator      translator Interface
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
     {
@@ -50,23 +45,22 @@ class CategoryController extends AbstractController
         $this->translator = $translator;
     }
 
-
-
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     *
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request            $request   HTTP Request
+     * @param PaginatorInterface $paginator Paginator
      *
      * @return Response HTTP response
      */
     #[Route(name: 'category_index', methods: 'GET')]
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        $filters = $this->getFilters($request);
 
         $pagination = $this->categoryService->getPaginatedList(
-            $request->query->getInt('page', 1)
+            $request->query->getInt('page', 1),
+            $filters
         );
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
@@ -87,10 +81,8 @@ class CategoryController extends AbstractController
     )]
     public function show(Category $category): Response
     {
-
         return $this->render('category/show.html.twig', ['category' => $category]);
     }
-
 
     /**
      * Create action.
@@ -170,7 +162,6 @@ class CategoryController extends AbstractController
         );
     }
 
-
     /**
      * Delete action.
      *
@@ -183,7 +174,7 @@ class CategoryController extends AbstractController
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.category_contains_advertisements')
@@ -222,31 +213,20 @@ class CategoryController extends AbstractController
         );
     }
 
-//    /**
-//     * Advertisements action.
-//     *
-//     * @param Advertisement $advertisement Category
-//     *
-//     * @return Response HTTP response
-//     */
-//    #[Route(
-//        '/{id}/advertisements',
-//        name: 'category_advertisements',
-//        requirements: ['id' => '[1-9]\d*'],
-//        methods: 'GET'
-//    )]
-//    public function advertisements(Advertisement $advertisement): Response
-//    {
-//
-//        $advertisementList =
-//
-//        $pagination = $this->categoryService->getPaginatedList(
-//            $request->query->getInt('page', 1)
-//        );
-//
-//        #return $this->render('category/index.html.twig', ['pagination' => $pagination]);
-//
-//        return $this->render('category/show.html.twig', ['advertisements' => $advertisements]);
-//    }
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int, status_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
 
+        return $filters;
+    }
 }

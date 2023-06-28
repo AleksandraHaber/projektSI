@@ -7,13 +7,11 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-//use App\Entity\Enum\TaskStatus;
+// use App\Entity\Enum\TaskStatus;
 
 use App\Entity\Advertisement;
-//use App\Entity\User;
-use DateTimeImmutable;
+// use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-
 
 /**
  * Class AdvertisementFixtures.
@@ -37,12 +35,12 @@ class AdvertisementFixtures extends AbstractBaseFixtures implements DependentFix
             $advertisement = new Advertisement();
             $advertisement->setTitle($this->faker->sentence);
             $advertisement->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             $advertisement->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
@@ -51,7 +49,7 @@ class AdvertisementFixtures extends AbstractBaseFixtures implements DependentFix
             $advertisement->setCategory($category);
             $advertisement->setText($this->faker->sentence);
             $advertisement->setIsActive(true);
-            $advertisement->setPhoneNumber($this->faker->randomNumber(9,true));
+            $advertisement->setPhoneNumber($this->faker->randomNumber(9, true));
             $advertisement->setEmail($this->faker->email);
 
             return $advertisement;

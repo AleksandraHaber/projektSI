@@ -21,6 +21,16 @@
         <a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>
     </div>
 {% endif %}
+{% if is_granted('ROLE_ADMIN') %}
+    <div>
+        <a href="{{ url('user_edit', {id: app.user.id}) }}" title="{{ 'action.user_edit'|trans }}">
+            {{ 'Zmień hasło'|trans }}
+        </a>
+        <a href="{{ url('user_data', {id: app.user.id}) }}" title="{{ 'action.data_edit'|trans }}">
+            {{ 'Zmień dane'|trans }}
+        </a>
+    </div>
+{% endif %}
 <main role="main" class="container-fluid">
     <div class="container-fluid">
         {% include 'default/_flash_messages.html.twig' %}

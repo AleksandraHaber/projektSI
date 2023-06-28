@@ -36,7 +36,6 @@ interface CategoryServiceInterface
      */
     public function delete(Category $category): void;
 
-
     /**
      * Can Category be deleted?
      *
@@ -45,5 +44,4 @@ interface CategoryServiceInterface
      * @return bool Result
      */
     public function canBeDeleted(Category $category): bool;
-
 }
