@@ -24,6 +24,8 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry.
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -43,6 +45,8 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * @param Category $entity category entity
+     *
+     * @param bool     $flush
      */
     public function remove(Category $entity, bool $flush = false): void
     {
@@ -78,21 +82,6 @@ class CategoryRepository extends ServiceEntityRepository
     {
         $this->_em->remove($category);
         $this->_em->flush();
-    }
-
-    /**
-     * @return Category[] Returns an array of Category objects
-     */
-    public function findByExampleField($value): array
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
     }
 
     /**

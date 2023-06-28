@@ -36,6 +36,8 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
+     *
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -121,6 +123,10 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * Finds advertisement by category.
+     *
+     * @param $id
+     *
+     * @return array
      */
     public function findAllByCategory($id): array
     {

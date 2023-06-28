@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_list'|trans }}</h1>
-    <div><a href="{{ url('advertisement_index') }}" title="{{ 'action.advertisements'|trans }}">
-            {{ 'Ogłoszenia'|trans }}
+
+    <div class="catAd"><a href="{{ url('advertisement_index') }}" title="{{ 'action.advertisements'|trans }}">
+            {{ 'action.advertisements'|trans }}
         </a>
     </div>
+
+    <h1 class="title">{{ 'title.category_list'|trans }}</h1>
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -17,7 +19,7 @@
             {{ knp_pagination_render(pagination) }}
         </div>
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <p><a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
+        <p class="option"><a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
                 {{ 'action.create'|trans }}
             </a></p>
     {% endif %}
@@ -25,10 +27,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'category.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'category.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'category.id') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'category.createdAt') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -38,23 +40,23 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.createdAt|format_date('long') }}</td>
                     <td>{{ category.updatedAt|format_date('long') }}</td>
-                    <td><a href="{{ url('advertisement_index', {'filters.category_id' : category.id}) }}" title="{{ category.title }}">
+                    <td class="category"><a href="{{ url('advertisement_index', {'filters.category_id' : category.id}) }}" title="{{ category.title }}">
                             {{ category.title }}
                         </a></td>
-                    <td>
-                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
+                    <td class="show">
+                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
                         </a>
                     </td>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <td>
+                    <td class="edit">
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
                     </td>
                     {% endif %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <td>
+                    <td class="delete">
                         <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>

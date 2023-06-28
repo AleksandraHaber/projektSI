@@ -5,12 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.inactive_advertisement_list'|trans }}</h1>
+    <h1 class="title">{{ 'title.inactive_advertisement_list'|trans }}</h1>
 
-    <div><a href="{{ url('advertisement_index') }}" title="{{ 'action.advertisements'|trans }}">
-            {{ 'Powrót'|trans }}
-        </a>
-    </div>
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -21,10 +17,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'advertisement.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'advertisement.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'advertisement.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'advertisement.title') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'advertisement.id') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'advertisement.createdAt') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'advertisement.updatedAt') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'advertisement.title') }}</th>
                 <th>{{'label.isActive'|trans}}</th>
                 <th>{{ 'label.category'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
@@ -44,19 +40,19 @@
                         <th><a href="{{ url('advertisement_index', {'filters.category_id' : advertisement.category.id}) }}" title="{{ advertisement.category.title }}">
                                 {{ advertisement.category.title }}
                             </a></th>
-                        <td>
+                        <td class="show">
                             <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                                 {{ 'action.view'|trans }}
                             </a>
                         </td>
-                        <td>
+                        <td class="edit">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <a href="{{ url('advertisement_activate', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
-                                    {{ 'action.edit'|trans }}
+                                <a href="{{ url('advertisement_activate', {id: advertisement.id}) }}" title="{{ 'action.activate'|trans }}">
+                                    {{ 'action.activate'|trans }}
                                 </a>
                             {% endif %}
                         </td>
-                        <td>
+                        <td class="delete">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <a href="{{ url('advertisement_delete', {id: advertisement.id}) }}" title="{{ 'action.delete'|trans }}">
                                     {{ 'action.delete'|trans }}
@@ -78,4 +74,8 @@
             {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
+    <div class="back"><a href="{{ url('advertisement_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
 {% endblock %}

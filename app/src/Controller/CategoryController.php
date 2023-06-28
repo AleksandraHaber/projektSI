@@ -56,11 +56,8 @@ class CategoryController extends AbstractController
     #[Route(name: 'category_index', methods: 'GET')]
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
-        $filters = $this->getFilters($request);
-
         $pagination = $this->categoryService->getPaginatedList(
             $request->query->getInt('page', 1),
-            $filters
         );
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
@@ -211,22 +208,5 @@ class CategoryController extends AbstractController
                 'category' => $category,
             ]
         );
-    }
-
-    /**
-     * Get filters from request.
-     *
-     * @param Request $request HTTP request
-     *
-     * @return array<string, int> Array of filters
-     *
-     * @psalm-return array{category_id: int, status_id: int}
-     */
-    private function getFilters(Request $request): array
-    {
-        $filters = [];
-        $filters['category_id'] = $request->query->getInt('filters_category_id');
-
-        return $filters;
     }
 }

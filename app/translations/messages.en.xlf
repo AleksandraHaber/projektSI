@@ -38,6 +38,192 @@
                 <source>title.record_view</source>
                 <target>Record view #%id%</target>
             </trans-unit>
+
+            <trans-unit id="action.user_edit">
+                <source>action.user_edit</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="action.data_edit">
+                <source>action.data_edit</source>
+                <target>Change data</target>
+            </trans-unit>
+
+            <trans-unit id="title.advertisement_list">
+                <source>title.advertisement_list</source>
+                <target>Advertisements list</target>
+            </trans-unit>
+            <trans-unit id="label.created_at">
+                <source>label.created_at</source>
+                <target>Created at</target>
+            </trans-unit>
+            <trans-unit id="label.updated_at">
+                <source>label.updated_at</source>
+                <target>Updated at</target>
+            </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Log out</target>
+            </trans-unit>
+            <trans-unit id="action.category">
+                <source>action.category</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="action.create">
+                <source>action.create</source>
+                <target>Create new</target>
+            </trans-unit>
+            <trans-unit id="action.view">
+                <source>action.view</source>
+                <target>Show</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_list">
+                <source>title.category_list</source>
+                <target>Category list</target>
+            </trans-unit>
+            <trans-unit id="action.advertisements">
+                <source>action.advertisements</source>
+                <target>Advertisements</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_details">
+                <source>title.category_details</source>
+                <target>Category's details</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Back</target>
+            </trans-unit>
+
+            <trans-unit id="title.advertisement_details">
+                <source>title.advertisement_details</source>
+                <target>Advertisement Details</target>
+            </trans-unit>
+            <trans-unit id="label.text">
+                <source>label.text</source>
+                <target>Content</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="label.phoneNumber">
+                <source>label.phoneNumber</source>
+                <target>Phone number</target>
+            </trans-unit>
+
+            <trans-unit id="title.advertisement_create">
+                <source>title.advertisement_create</source>
+                <target>Create an advertisement</target>
+            </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target>None</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Save</target>
+            </trans-unit>
+
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="title.advertisement_edit">
+                <source>title.advertisement_edit</source>
+                <target>Edit the advertisement</target>
+            </trans-unit>
+            <trans-unit id="title.advertisement_delete">
+                <source>title.advertisement_delete</source>
+                <target>Delete the advertisement</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>New password</target>
+            </trans-unit>
+            <trans-unit id="label.password.repeat">
+                <source>label.password.repeat</source>
+                <target>Repeat password</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_data">
+                <source>title.user_data</source>
+                <target>Change data</target>
+            </trans-unit>
+            <trans-unit id="title.category_create">
+                <source>title.category_create</source>
+                <target>Create a category</target>
+            </trans-unit>
+            <trans-unit id="title.category_edit">
+                <source>title.category_edit</source>
+                <target>Edit the category</target>
+            </trans-unit>
+            <trans-unit id="action.to_inactive">
+                <source>action.to_inactive</source>
+                <target>Inactive</target>
+            </trans-unit>
+            <trans-unit id="label.isActive">
+                <source>label.isActive</source>
+                <target>Is active</target>
+            </trans-unit>
+            <trans-unit id="title.inactive_advertisement_list">
+                <source>title.inactive_advertisement_list</source>
+                <target>Inactive advertisements list</target>
+            </trans-unit>
+            <trans-unit id="action.activate">
+                <source>action.activate</source>
+                <target>Activate</target>
+            </trans-unit>
+            <trans-unit id="message.form_error">
+                <source>message.form_error</source>
+                <target>Form error</target>
+            </trans-unit>
+            <trans-unit id="message.created_successfully">
+                <source>message.created_successfully</source>
+                <target>Created successfully</target>
+            </trans-unit>
+            <trans-unit id="title.advertisement_activate">
+                <source>title.advertisement_activate</source>
+                <target>Activate the advertisement</target>
+            </trans-unit>
+            <trans-unit id="message.activated_successfully">
+                <source>message.activated_successfully</source>
+                <target>Activated successfully</target>
+            </trans-unit>
+            <trans-unit id="title.category_delete">
+                <source>title.category_delete</source>
+                <target>Delete the category</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Deleted successfully</target>
+            </trans-unit>
+            <trans-unit id="message.edited_successfully">
+                <source>message.edited_successfully</source>
+                <target>Edited successfully</target>
+            </trans-unit>
+            <trans-unit id="message.category_contains_advertisements">
+                <source>message.category_contains_advertisements</source>
+                <target>Category contains advertisements</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

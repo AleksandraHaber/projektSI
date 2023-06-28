@@ -6,12 +6,22 @@
 
 {% block body %}
 
-    <h1>{{ 'title.advertisement_list'|trans }}</h1>
-
-    <div><a href="{{ url('category_index') }}" title="{{ 'action.category'|trans }}">
-            {{ 'Kategorie'|trans }}
+    <div class="catAd"><a href="{{ url('category_index') }}" title="{{ 'action.category'|trans }}">
+            {{ 'action.category'|trans }}
         </a>
     </div>
+
+    <h1 class="title">{{ 'title.advertisement_list'|trans }}</h1>
+<div class="options">
+        <p class="option"><a href="{{ url('advertisement_create') }}" title="{{ 'action.create'|trans }}">
+                {{ 'action.create'|trans }}
+            </a></p>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p class="option"><a href="{{ url('advertisement_inactive') }}" title="{{ 'action.to_inactive'|trans }}">
+                    {{ 'action.to_inactive'|trans }}
+                </a></p>
+        {% endif %}
+</div>
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -19,18 +29,14 @@
             {{ knp_pagination_render(pagination) }}
         </div>
 
-        <p><a href="{{ url('advertisement_create') }}" title="{{ 'action.create'|trans }}">
-                {{ 'action.create'|trans }}
-            </a></p>
-
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'advertisement.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'advertisement.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'advertisement.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'advertisement.title') }}</th>
-                <th>{{'label.isActive'|trans}}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'advertisement.id') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'advertisement.createdAt') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'advertisement.updatedAt') }}</th>
+                <th class="action">{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'advertisement.title') }}</th>
+{#                <th>{{'label.isActive'|trans}}</th>#}
                 <th>{{ 'label.category'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -43,23 +49,23 @@
                     <td>{{ advertisement.createdAt|format_date('long') }}</td>
                     <td>{{ advertisement.updatedAt|format_date('long') }}</td>
                     <td>{{ advertisement.title }}</td>
-                    <td>
-                        {{ advertisement.isActive}}
-                    </td>
+{#                    <td>#}
+{#                        {{ advertisement.isActive}}#}
+{#                    </td>#}
                     <td>{{ advertisement.category.title }}</td>
-                    <td>
+                    <td class="show">
                         <a href="{{ url('advertisement_show', {id: advertisement.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
                     </td>
-                    <td>
+                    <td class="edit">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a href="{{ url('advertisement_edit', {id: advertisement.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
                     {% endif %}
                     </td>
-                    <td>
+                    <td class="delete">
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a href="{{ url('advertisement_delete', {id: advertisement.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}

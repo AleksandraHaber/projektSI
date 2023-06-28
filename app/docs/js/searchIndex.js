@@ -11,11 +11,6 @@ Search.appendIndex(
             "summary": "Constructor.",
             "url": "classes/App-Controller-AdvertisementController.html#method___construct"
         },                {
-            "fqsen": "\\App\\Controller\\AdvertisementController\u003A\u003AgetFilters\u0028\u0029",
-            "name": "getFilters",
-            "summary": "Get\u0020filters\u0020from\u0020request.",
-            "url": "classes/App-Controller-AdvertisementController.html#method_getFilters"
-        },                {
             "fqsen": "\\App\\Controller\\AdvertisementController\u003A\u003Aindex\u0028\u0029",
             "name": "index",
             "summary": "Index\u0020action.",
@@ -51,6 +46,11 @@ Search.appendIndex(
             "summary": "Activate\u0020action.",
             "url": "classes/App-Controller-AdvertisementController.html#method_activate"
         },                {
+            "fqsen": "\\App\\Controller\\AdvertisementController\u003A\u003AgetFilters\u0028\u0029",
+            "name": "getFilters",
+            "summary": "Get\u0020filters\u0020from\u0020request.",
+            "url": "classes/App-Controller-AdvertisementController.html#method_getFilters"
+        },                {
             "fqsen": "\\App\\Controller\\AdvertisementController\u003A\u003A\u0024advertisementService",
             "name": "advertisementService",
             "summary": "Advertisement\u0020service.",
@@ -70,11 +70,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Constructor.",
             "url": "classes/App-Controller-CategoryController.html#method___construct"
-        },                {
-            "fqsen": "\\App\\Controller\\CategoryController\u003A\u003AgetFilters\u0028\u0029",
-            "name": "getFilters",
-            "summary": "Get\u0020filters\u0020from\u0020request.",
-            "url": "classes/App-Controller-CategoryController.html#method_getFilters"
         },                {
             "fqsen": "\\App\\Controller\\CategoryController\u003A\u003Aindex\u0028\u0029",
             "name": "index",
@@ -113,17 +108,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\SecurityController",
             "name": "SecurityController",
-            "summary": "",
+            "summary": "Class\u0020SecurityController.",
             "url": "classes/App-Controller-SecurityController.html"
         },                {
             "fqsen": "\\App\\Controller\\SecurityController\u003A\u003Alogin\u0028\u0029",
             "name": "login",
-            "summary": "",
+            "summary": "Login\u0020action.",
             "url": "classes/App-Controller-SecurityController.html#method_login"
         },                {
             "fqsen": "\\App\\Controller\\SecurityController\u003A\u003Alogout\u0028\u0029",
             "name": "logout",
-            "summary": "",
+            "summary": "Logout\u0020action.",
             "url": "classes/App-Controller-SecurityController.html#method_logout"
         },                {
             "fqsen": "\\App\\Controller\\UserController",
@@ -223,12 +218,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\DataFixtures\\AppFixtures",
             "name": "AppFixtures",
-            "summary": "",
+            "summary": "Class\u0020AppFixtures.",
             "url": "classes/App-DataFixtures-AppFixtures.html"
         },                {
             "fqsen": "\\App\\DataFixtures\\AppFixtures\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "",
+            "summary": "Load\u0020function",
             "url": "classes/App-DataFixtures-AppFixtures.html#method_load"
         },                {
             "fqsen": "\\App\\DataFixtures\\CategoryFixtures",
@@ -323,12 +318,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\Advertisement\u003A\u003AgetCategory\u0028\u0029",
             "name": "getCategory",
-            "summary": "",
+            "summary": "Getter\u0020for\u0020category.",
             "url": "classes/App-Entity-Advertisement.html#method_getCategory"
         },                {
             "fqsen": "\\App\\Entity\\Advertisement\u003A\u003AsetCategory\u0028\u0029",
             "name": "setCategory",
-            "summary": "",
+            "summary": "Setter\u0020for\u0020category.",
             "url": "classes/App-Entity-Advertisement.html#method_setCategory"
         },                {
             "fqsen": "\\App\\Entity\\Advertisement\u003A\u003AgetEmail\u0028\u0029",
@@ -628,7 +623,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
-            "summary": "",
+            "summary": "Class\u0020Kernel.",
             "url": "classes/App-Kernel.html"
         },                {
             "fqsen": "\\App\\Repository\\AdvertisementRepository",
@@ -638,23 +633,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor.",
             "url": "classes/App-Repository-AdvertisementRepository.html#method___construct"
         },                {
             "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AqueryAll\u0028\u0029",
             "name": "queryAll",
             "summary": "Query\u0020all\u0020records.",
             "url": "classes/App-Repository-AdvertisementRepository.html#method_queryAll"
-        },                {
-            "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AapplyFiltersToList\u0028\u0029",
-            "name": "applyFiltersToList",
-            "summary": "Apply\u0020filters\u0020to\u0020paginated\u0020list.",
-            "url": "classes/App-Repository-AdvertisementRepository.html#method_applyFiltersToList"
-        },                {
-            "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AgetOrCreateQueryBuilder\u0028\u0029",
-            "name": "getOrCreateQueryBuilder",
-            "summary": "Get\u0020or\u0020create\u0020new\u0020query\u0020builder.",
-            "url": "classes/App-Repository-AdvertisementRepository.html#method_getOrCreateQueryBuilder"
         },                {
             "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AcountByCategory\u0028\u0029",
             "name": "countByCategory",
@@ -678,8 +663,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AfindAllByCategory\u0028\u0029",
             "name": "findAllByCategory",
-            "summary": "",
+            "summary": "Finds\u0020advertisement\u0020by\u0020category.",
             "url": "classes/App-Repository-AdvertisementRepository.html#method_findAllByCategory"
+        },                {
+            "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AapplyFiltersToList\u0028\u0029",
+            "name": "applyFiltersToList",
+            "summary": "Apply\u0020filters\u0020to\u0020paginated\u0020list.",
+            "url": "classes/App-Repository-AdvertisementRepository.html#method_applyFiltersToList"
+        },                {
+            "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003AgetOrCreateQueryBuilder\u0028\u0029",
+            "name": "getOrCreateQueryBuilder",
+            "summary": "Get\u0020or\u0020create\u0020new\u0020query\u0020builder.",
+            "url": "classes/App-Repository-AdvertisementRepository.html#method_getOrCreateQueryBuilder"
         },                {
             "fqsen": "\\App\\Repository\\AdvertisementRepository\u003A\u003APAGINATOR_ITEMS_PER_PAGE",
             "name": "PAGINATOR_ITEMS_PER_PAGE",
@@ -693,7 +688,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor.",
             "url": "classes/App-Repository-CategoryRepository.html#method___construct"
         },                {
             "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003Asave\u0028\u0029",
@@ -711,6 +706,16 @@ Search.appendIndex(
             "summary": "Query\u0020all\u0020records.",
             "url": "classes/App-Repository-CategoryRepository.html#method_queryAll"
         },                {
+            "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003Adelete\u0028\u0029",
+            "name": "delete",
+            "summary": "Delete\u0020entity.",
+            "url": "classes/App-Repository-CategoryRepository.html#method_delete"
+        },                {
+            "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003AqueryByAuthor\u0028\u0029",
+            "name": "queryByAuthor",
+            "summary": "Query\u0020advertisements\u0020by\u0020author.",
+            "url": "classes/App-Repository-CategoryRepository.html#method_queryByAuthor"
+        },                {
             "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003AapplyFiltersToList\u0028\u0029",
             "name": "applyFiltersToList",
             "summary": "Apply\u0020filters\u0020to\u0020paginated\u0020list.",
@@ -720,21 +725,6 @@ Search.appendIndex(
             "name": "getOrCreateQueryBuilder",
             "summary": "Get\u0020or\u0020create\u0020new\u0020query\u0020builder.",
             "url": "classes/App-Repository-CategoryRepository.html#method_getOrCreateQueryBuilder"
-        },                {
-            "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003Adelete\u0028\u0029",
-            "name": "delete",
-            "summary": "Delete\u0020entity.",
-            "url": "classes/App-Repository-CategoryRepository.html#method_delete"
-        },                {
-            "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003AfindByExampleField\u0028\u0029",
-            "name": "findByExampleField",
-            "summary": "",
-            "url": "classes/App-Repository-CategoryRepository.html#method_findByExampleField"
-        },                {
-            "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003AqueryByAuthor\u0028\u0029",
-            "name": "queryByAuthor",
-            "summary": "Query\u0020advertisements\u0020by\u0020author.",
-            "url": "classes/App-Repository-CategoryRepository.html#method_queryByAuthor"
         },                {
             "fqsen": "\\App\\Repository\\CategoryRepository\u003A\u003APAGINATOR_ITEMS_PER_PAGE",
             "name": "PAGINATOR_ITEMS_PER_PAGE",
@@ -748,7 +738,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\UserRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor.",
             "url": "classes/App-Repository-UserRepository.html#method___construct"
         },                {
             "fqsen": "\\App\\Repository\\UserRepository\u003A\u003Asave\u0028\u0029",
@@ -891,15 +881,15 @@ Search.appendIndex(
             "summary": "Find\u0020by\u0020category.",
             "url": "classes/App-Service-AdvertisementService.html#method_findAllByCategory"
         },                {
-            "fqsen": "\\App\\Service\\AdvertisementService\u003A\u003AprepareFilters\u0028\u0029",
-            "name": "prepareFilters",
-            "summary": "Prepare\u0020filters\u0020for\u0020the\u0020tasks\u0020list.",
-            "url": "classes/App-Service-AdvertisementService.html#method_prepareFilters"
-        },                {
             "fqsen": "\\App\\Service\\AdvertisementService\u003A\u003Aactivate\u0028\u0029",
             "name": "activate",
             "summary": "Activate\u0020advertisement.",
             "url": "classes/App-Service-AdvertisementService.html#method_activate"
+        },                {
+            "fqsen": "\\App\\Service\\AdvertisementService\u003A\u003AprepareFilters\u0028\u0029",
+            "name": "prepareFilters",
+            "summary": "Prepare\u0020filters\u0020for\u0020the\u0020tasks\u0020list.",
+            "url": "classes/App-Service-AdvertisementService.html#method_prepareFilters"
         },                {
             "fqsen": "\\App\\Service\\AdvertisementService\u003A\u003A\u0024advertisementRepository",
             "name": "advertisementRepository",

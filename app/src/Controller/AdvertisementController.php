@@ -54,8 +54,11 @@ class AdvertisementController extends AbstractController
     #[Route(name: 'advertisement_index', methods: 'GET')]
     public function index(Request $request): Response
     {
+        $filters = $this->getFilters($request);
+
         $pagination = $this->advertisementService->getPaginatedList(
             $request->query->getInt('page', 1),
+            $filters
         );
 
         return $this->render('advertisement/index.html.twig', ['pagination' => $pagination]);

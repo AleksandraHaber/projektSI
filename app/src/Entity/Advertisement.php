@@ -206,6 +206,8 @@ class Advertisement
 
     /**
      * Getter for category.
+     *
+     * @return Category|null
      */
     public function getCategory(): ?Category
     {
@@ -214,6 +216,8 @@ class Advertisement
 
     /**
      * Setter for category.
+     *
+     * @param ?Category $category Category.
      *
      * @return $this
      */
