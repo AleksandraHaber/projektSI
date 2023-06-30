@@ -37,7 +37,7 @@ class AdvertisementRepository extends ServiceEntityRepository
     /**
      * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry Manager
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -124,11 +124,11 @@ class AdvertisementRepository extends ServiceEntityRepository
     /**
      * Finds advertisement by category.
      *
-     * @param $id
+     * @param int $id Id
      *
-     * @return array
+     * @return array getOrQueryBuilder
      */
-    public function findAllByCategory($id): array
+    public function findAllByCategory(int $id): array
     {
         return $this->getOrCreateQueryBuilder()
             ->andWhere('category_id = :val')

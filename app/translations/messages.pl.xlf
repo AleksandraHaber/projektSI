@@ -219,6 +219,28 @@
                 <source>message.category_contains_advertisements</source>
                 <target>Kategoria zawiera ogłoszenia</target>
             </trans-unit>
+
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Logowanie</target>
+            </trans-unit>
+            <trans-unit id="label.sign_in">
+                <source>label.sign_in</source>
+                <target>Zaloguj się!</target>
+            </trans-unit>
+            <trans-unit id="error.messageKey">
+                <source>error.messageKey</source>
+                <target>Błąd logowania</target>
+            </trans-unit>
+            <trans-unit id="label.welcome">
+                <source>label.welcome</source>
+                <target>Witaj!</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

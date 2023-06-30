@@ -20,12 +20,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
+    /**
+     * Items per page.
+     *
+     * @constant int
+     */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.
      *
-     * @param ManagerRegistry $registry Manager registry.
+     * @param ManagerRegistry $registry manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -44,9 +49,10 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Category $entity category entity
+     * Remove entity.
      *
-     * @param bool     $flush
+     * @param Category $entity category entity
+     * @param bool     $flush  flush
      */
     public function remove(Category $entity, bool $flush = false): void
     {

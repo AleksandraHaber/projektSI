@@ -224,6 +224,27 @@
                 <target>Category contains advertisements</target>
             </trans-unit>
 
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="label.sign_in">
+                <source>label.sign_in</source>
+                <target>Sign in!</target>
+            </trans-unit>
+            <trans-unit id="error.messageKey">
+                <source>error.messageKey</source>
+                <target>Error message Key</target>
+            </trans-unit>
+            <trans-unit id="label.welcome">
+                <source>label.welcome</source>
+                <target>Welcome!</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

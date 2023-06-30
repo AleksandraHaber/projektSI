@@ -14,11 +14,9 @@ use Doctrine\Persistence\ObjectManager;
 class AppFixtures extends Fixture
 {
     /**
-     * Load function
+     * Load function.
      *
-     * @param ObjectManager $manager
-     *
-     * @return void
+     * @param ObjectManager $manager Manager
      */
     public function load(ObjectManager $manager): void
     {
