@@ -12,8 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Advertisement.
- *
- * @psalm-suppress MissingConstructor
  */
 #[ORM\Entity(repositoryClass: AdvertisementRepository::class)]
 #[ORM\Table(name: 'advertisements')]

@@ -132,7 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for password.
      *
-     * @return string|null Password
+     * @return string Password
      *
      * @see PasswordAuthenticatedUserInterface
      */
